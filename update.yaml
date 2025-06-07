@@ -1,0 +1,9 @@
+apiVersion: apps.weex.com/v1
+kind: RolloutApp
+metadata:
+  name: rollout-nginx
+  namespace: default
+spec:
+  statefulSetName: nginx
+  namespace: default
+  rafturl: http://testingonly.com
