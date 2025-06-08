@@ -2,8 +2,10 @@ apiVersion: apps.weex.com/v1
 kind: RolloutApp
 metadata:
   name: rollout-nginx
-  namespace: default
+  namespace: prod
 spec:
   statefulSetName: nginx
-  namespace: default
+  namespace: prod
   rafturl: http://testingonly.com
+  initPartition: 3
+  suspend: false

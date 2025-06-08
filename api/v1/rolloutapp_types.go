@@ -25,13 +25,19 @@ import (
 
 // RolloutAppSpec defines the desired state of RolloutApp.
 type RolloutAppSpec struct {
+	// StatefulSetName is the name of the StatefulSet to be rolled out
 	StatefulSetName string `json:"statefulSetName"`
-	Namespace       string `json:"namespace"`
-	RaftUrl         string `json:"rafturl"`
-	// ContainerName   string `json:"containerName"`
-	// Image            string `json:"image"`
-	// RollingPartition int32  `json:"rollingPartition"`
-	// DependsOn        string `json:"dependsOn,omitempty"`
+	// Namespace is the namespace where the StatefulSet is located
+	Namespace string `json:"namespace"`
+	//RaftUrl is the URL for the Raft cluster
+	RaftUrl string `json:"rafturl"`
+	// +kubebuilder:default=3
+	// InitPartition is the initial partition size for the rollout
+	InitPartition int32 `json:"initPartition"`
+
+	// +kubebuilder:default=false
+	// Suspend prevents the operator from continuing rollout
+	Suspend bool `json:"suspend,omitempty"`
 }
 
 // RolloutAppStatus defines the observed state of RolloutApp.

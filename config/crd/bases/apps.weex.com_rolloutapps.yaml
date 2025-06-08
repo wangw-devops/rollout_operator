@@ -39,12 +39,29 @@ spec:
           spec:
             description: RolloutAppSpec defines the desired state of RolloutApp.
             properties:
+              initPartition:
+                default: 3
+                description: InitPartition is the initial partition size for the rollout
+                format: int32
+                type: integer
               namespace:
+                description: Namespace is the namespace where the StatefulSet is located
+                type: string
+              rafturl:
+                description: RaftUrl is the URL for the Raft cluster
                 type: string
               statefulSetName:
+                description: StatefulSetName is the name of the StatefulSet to be
+                  rolled out
                 type: string
+              suspend:
+                default: false
+                description: Suspend prevents the operator from continuing rollout
+                type: boolean
             required:
+            - initPartition
             - namespace
+            - rafturl
             - statefulSetName
             type: object
           status:
